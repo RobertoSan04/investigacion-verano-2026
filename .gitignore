@@ -15,5 +15,5 @@ __pycache__/
 
 # Sensitive data
 01_data/
-05_outputs/
+outputs/
 dataset.csv

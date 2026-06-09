@@ -126,7 +126,7 @@ def parsear_numericos(df: pd.DataFrame, verbose: bool = True) -> pd.DataFrame:
         serie = serie.replace(list(NAN_TOKENS), pd.NA)
         serie_num = pd.to_numeric(serie, errors = "coerce")
 
-        nan_nuevos = serie_num.isna().sum() - serie.isna().sum
+        nan_nuevos = serie_num.isna().sum() - serie.isna().sum()
         if nan_nuevos > 0:
             mask = serie_num.isna() & serie.notna()
             cols_nan_inesperados[col] ={

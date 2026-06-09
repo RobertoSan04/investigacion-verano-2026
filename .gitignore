@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.python-version
+
+# Virtual Enviroment
+.venv/
+
+# IDE
+.idea/
+
+# Sensitive data
+01_data/
+05_outputs/
+dataset.csv

@@ -7,7 +7,7 @@ Corre los 4 pasos anteriores en secuencia y guarda el resultado:
 2. cleaning.parsear_numericos
 3. leakage.quitar_leakage -> X, y
 4. encoding.encodear_categoricas _. X_enc
-5. Combinar X_enc + y -> df_clean.parquet
+5. Combinar X_enc + y -> df_clean.csv
 """
 
 import argparse
@@ -15,10 +15,10 @@ import sys
 import pandas as pd
 from pathlib import Path
 
-from src.m2_preparacion.loader import cargar_hoja1
-from src.m2_preparacion.cleaning import parsear_numericos
-from src.m2_preparacion.leakage import quitar_leakage
-from src.m2_preparacion.encoding import encodear_categoricas
+from src.m2_data_prep.loader import cargar_hoja1
+from src.m2_data_prep.cleaning import parsear_numericos
+from src.m2_data_prep.leakage import quitar_leakage
+from src.m2_data_prep.encoding import encodear_categorias
 
 # Añadir raíz del proyecto al path
 ROOT = Path(__file__).resolve().parent.parent
@@ -43,7 +43,7 @@ def build_df_clean(data_path: str, out_path: str) -> pd.DataFrame:
 
     # Paso 4 — Encoding
     print("\n[4/4] Encoding de categóricas...")
-    X_enc = encodear_categoricas(X, verbose=True)
+    X_enc = encodear_categorias(X, verbose=True)
 
     # Combinar X_enc + y en df_clean
     df_clean = X_enc.copy()

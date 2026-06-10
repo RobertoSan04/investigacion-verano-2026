@@ -12,17 +12,17 @@ Corre los 4 pasos anteriores en secuencia y guarda el resultado:
 
 import argparse
 import sys
-import pandas as pd
 from pathlib import Path
 
+# Añadir raíz del proyecto al path antes de imports locales
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+import pandas as pd
 from src.m2_data_prep.loader import cargar_hoja1
 from src.m2_data_prep.cleaning import parsear_numericos
 from src.m2_data_prep.leakage import quitar_leakage
 from src.m2_data_prep.encoding import encodear_categorias
-
-# Añadir raíz del proyecto al path
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
 
 def build_df_clean(data_path: str, out_path: str) -> pd.DataFrame:
     print("=" * 50)
@@ -52,7 +52,7 @@ def build_df_clean(data_path: str, out_path: str) -> pd.DataFrame:
     # Guardar
     out = Path(out_path)
     out.parent.mkdir(parents=True, exist_ok=True)
-    df_clean.to_parquet(out, index=False)
+    df_clean.to_csv(out, index=False)
 
     print("\n" + "=" * 50)
     print(f"df_clean guardado en: {out}")
@@ -64,9 +64,9 @@ def build_df_clean(data_path: str, out_path: str) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Genera df_clean.parquet desde el Excel de aféresis.")
+    parser = argparse.ArgumentParser(description="Genera df_clean.csv desde el Excel de aféresis.")
     parser.add_argument("--data", required=True, help="Ruta al archivo .xlsx")
-    parser.add_argument("--out", default="data/df_clean.parquet", help="Ruta de salida del parquet")
+    parser.add_argument("--out", default="data/processed/df_clean.csv", help="Ruta de salida del CSV")
     args = parser.parse_args()
 
     build_df_clean(args.data, args.out)

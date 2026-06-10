@@ -101,6 +101,11 @@ def encodear_categorias(X: pd.DataFrame, verbose:bool = True) -> pd.DataFrame:
     X = pd.concat([X.drop(columns=["GPO ABO RECEPTOR"]), abo_rec], axis=1)
     log.append("GPO ABO RECEPTOR -> one-hot 4 cols (A, AB, B, O) — A/O→NaN")
 
+    # DOSIS PLERIXAFOR -> binaria (NaN = no se administró)
+    X["PLERIXAFOR_DADO"] = X["DOSIS PLERIXAFOR mg/kg"].notna().astype(float)
+    X = X.drop(columns=["DOSIS PLERIXAFOR mg/kg"])
+    log.append("DOSIS PLERIXAFOR mg/kg → PLERIXAFOR_DADO (binaria: 1=administrado, 0=no administrado)")
+
     if verbose:
         print("[encoding] Transformaciones aplicadas:")
         for line in log:

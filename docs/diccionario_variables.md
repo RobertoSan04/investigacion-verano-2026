@@ -49,7 +49,7 @@ Dataset: `2025_CPH_2_xlsx_final.xlsx` · Hoja: `Hoja1` · Filas válidas: 116 ·
 | `ESTIMULACIÓN` | `ESTIMULACION_PEGILADO` | binaria | 0–1 | 0 | Tipo de G-CSF: 0=estándar (filgrastim y biosimilares), 1=filgrastim pegilado |
 | `DOSIS DE G-CSF` | `DOSIS DE          G-CSF` | float | 6–18000 | 0 | Dosis de G-CSF administrada (µg) |
 | `DÍAS DE G-CSF` | `DÍAS DE          G-CSF` | float | 1–9 | 0 | Días de estimulación con G-CSF |
-| `DOSIS PLERIXAFOR mg/kg` | `DOSIS PLERIXAFOR mg/kg` | float | 0.12–0.24 | 89 | Dosis de Plerixafor en mg/kg. NaN = no se administró (76.7% de los casos) |
+| `DOSIS PLERIXAFOR mg/kg` | `PLERIXAFOR_DADO` | binaria | 0–1 | 0 | 1 si se administró plerixafor, 0 si no |
 
 ### CD34+ durante estimulación (pre-aféresis)
 
